@@ -82,7 +82,7 @@ export default function Home() {
     const ctx = gsap.context(() => {
       gsap.to('.hero-word-a', { xPercent: -11, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
       gsap.to('.hero-word-b', { xPercent: 12, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-      gsap.to('.hero-media img', { scale: 1.1, yPercent: 5, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+      gsap.to('.hero-media video', { scale: 1.08, yPercent: 4, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
       gsap.utils.toArray<HTMLElement>('.reveal').forEach(el => gsap.from(el, { opacity: 0, y: 40, duration: .85, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 86%' } }));
       gsap.utils.toArray<HTMLElement>('.parallax img').forEach((img, i) => gsap.fromTo(img, { yPercent: i % 2 ? -4 : 4 }, { yPercent: i % 2 ? 5 : -5, ease: 'none', scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: true } }));
       gsap.fromTo('.film-frame', { width: '62vw', height: '62vh' }, { width: '100vw', height: '100vh', ease: 'none', scrollTrigger: { trigger: '.film-section', start: 'top top', end: '+=1200', scrub: true, pin: true } });
@@ -109,7 +109,20 @@ export default function Home() {
 
       <section className="hero" id="top">
         <div className="hero-word hero-word-a"><span>WEDDING</span></div>
-        <div className="hero-media"><img src={IMG.hero} alt="Wedding Riwaz couple portrait"/></div>
+        <div className="hero-media">
+          <video
+            className="hero-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            aria-label="Wedding Riwaz cinematic wedding film"
+          >
+            <source src="/wr-home-loop.mp4" type="video/mp4" />
+          </video>
+          <div className="hero-video-shade" />
+        </div>
         <div className="hero-word hero-word-b"><span>RIWAZ</span></div>
         <div className="hero-foot"><span>PHOTOGRAPHY / FILMS</span><span>DELHI NCR — INDIA</span><span>SCROLL TO ENTER ↓</span></div>
       </section>
