@@ -27,32 +27,14 @@ const stories = [
 ];
 
 function CameraIntro({ onDone }: { onDone: () => void }) {
-  const introRef = useRef<HTMLDivElement>(null);
-  const cameraRef = useRef<HTMLDivElement>(null);
-  const flashRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    const tl = gsap.timeline({ onComplete: onDone });
-    tl.fromTo(cameraRef.current, { opacity: 0, scale: 0.86, rotateX: -8, rotateY: 14, y: 14 }, { opacity: 1, scale: 1, rotateX: 0, rotateY: 0, y: 0, duration: 0.34, ease: 'power4.out' })
-      .fromTo('.camera-shadow', { opacity: 0, scaleX: 0.65 }, { opacity: 0.7, scaleX: 1, duration: 0.34 }, 0)
-      .fromTo('.focus-corners', { opacity: 0, scale: 1.3 }, { opacity: 0.9, scale: 1, duration: 0.22 }, 0.32)
-      .to('.focus-ring', { rotate: 17, duration: 0.2, ease: 'power2.inOut' }, 0.48)
-      .to('.lens-glass', { scale: 0.95, filter: 'brightness(.72)', duration: 0.1, yoyo: true, repeat: 1 }, 0.55)
-      .to('.focus-corners', { scale: 0.82, opacity: 0.25, duration: 0.1, yoyo: true, repeat: 1 }, 0.57)
-      .to(cameraRef.current, { y: 4, rotateX: 1.6, duration: 0.045, yoyo: true, repeat: 1 }, 0.8)
-      .to('.shutter-button', { y: 3, duration: 0.035, yoyo: true, repeat: 1 }, 0.79)
-      .set(flashRef.current, { display: 'block' }, 0.83)
-      .to(flashRef.current, { opacity: 1, duration: 0.035 }, 0.83)
-      .to(cameraRef.current, { opacity: 0, scale: 1.04, duration: 0.015 }, 0.845)
-      .to('.camera-shadow', { opacity: 0, duration: 0.03 }, 0.845)
-      .to(flashRef.current, { opacity: 0, duration: 0.72, ease: 'power2.out' }, 0.89)
-      .to(introRef.current, { opacity: 0, duration: 0.14 }, 1.43);
-    return () => tl.kill();
+    const timer = window.setTimeout(onDone, 1600);
+    return () => window.clearTimeout(timer);
   }, [onDone]);
 
   return (
-    <div className="camera-intro" ref={introRef}>
-      <div className="camera-rig" ref={cameraRef}>
+    <div className="camera-intro camera-intro-css">
+      <div className="camera-rig">
         <div className="camera-shadow" />
         <div className="camera-body-3d">
           <div className="camera-top-plate" />
@@ -76,7 +58,7 @@ function CameraIntro({ onDone }: { onDone: () => void }) {
         <div className="focus-corners" aria-hidden="true"><i/><i/><i/><i/></div>
         <span className="hold-still">HOLD STILL</span>
       </div>
-      <div className="flash-layer" ref={flashRef}/>
+      <div className="flash-layer"/>
     </div>
   );
 }
