@@ -80,8 +80,16 @@ export default function Home() {
     gsap.ticker.lagSmoothing(0);
 
     const ctx = gsap.context(() => {
-      gsap.to('.hero-word-a', { xPercent: -11, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-      gsap.to('.hero-word-b', { xPercent: 12, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+      if (window.matchMedia('(min-width: 1201px)').matches) {
+        gsap.to('.hero-word-a', {
+          xPercent: -7,
+          scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+        });
+        gsap.to('.hero-word-b', {
+          xPercent: 7,
+          scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+        });
+      }
       if (window.matchMedia('(min-width: 801px)').matches) {
         gsap.to('.hero-media video', {
           scale: 1.08,
@@ -171,7 +179,8 @@ export default function Home() {
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
+            poster={IMG.wedding}
             aria-label="Wedding Riwaz cinematic wedding film"
           >
             <source src="/wr-home-loop.mp4" type="video/mp4" />
