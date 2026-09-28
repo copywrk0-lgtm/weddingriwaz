@@ -7,8 +7,6 @@ import Lenis from '@studio-freight/lenis';
 import CameraIntro from '../components/CameraIntro';
 
 const IMG = {
-  heroOne: '/wr-hero-1.webp',
-  heroTwo: '/wr-hero-2.webp',
   hero: 'https://weddingriwaz.com/wp-content/uploads/2024/06/3E1A0109-copy-scaled.jpg',
   rohitAlt: 'https://weddingriwaz.com/wp-content/uploads/2024/06/A08I3540.webp',
   rohitWedding: 'https://weddingriwaz.com/wp-content/uploads/2024/07/Z25A1696-copy-scaled.webp',
@@ -27,7 +25,7 @@ const IMG = {
 } as const;
 
 const stories = [
-  { no: '01', name: 'Light × Ritual', image: IMG.heroOne, note: 'wedding / evening / chandeliers' },
+  { no: '01', name: 'Rohit × Suman', image: IMG.hero, note: 'selected story / river / red' },
   { no: '02', name: 'Vipul × Sacchi', image: IMG.vipulTwo, note: 'pre-wedding / colour / daylight' },
   { no: '03', name: 'Prerna × Ankit', image: IMG.prernaTwo, note: 'evening / intimacy / light' },
   { no: '04', name: 'Rashi × Kshitij', image: IMG.rashiOne, note: 'wedding / ritual / colour' }
@@ -111,14 +109,7 @@ export default function Home() {
 
       <section className="hero" id="top">
         <div className="hero-word hero-word-a"><span>WEDDING</span></div>
-        <div className="hero-media hero-collage">
-          <div className="hero-photo hero-photo-main">
-            <img src={IMG.heroOne} alt="Wedding Riwaz couple beneath chandeliers"/>
-          </div>
-          <div className="hero-photo hero-photo-inset">
-            <img src={IMG.heroTwo} alt="Wedding Riwaz couple portrait"/>
-          </div>
-        </div>
+        <div className="hero-media"><img src={IMG.hero} alt="Wedding Riwaz couple portrait"/></div>
         <div className="hero-word hero-word-b"><span>RIWAZ</span></div>
         <div className="hero-foot"><span>PHOTOGRAPHY / FILMS</span><span>DELHI NCR — INDIA</span><span>SCROLL TO ENTER ↓</span></div>
       </section>
@@ -129,11 +120,10 @@ export default function Home() {
       </section>
 
       <section className="feature">
-        <div className="feature-title reveal"><span>01 / SELECTED STORY</span><h2>LIGHT<br/><b>×</b> RITUAL</h2><p>One night, held in photographs.</p></div>
+        <div className="feature-title reveal"><span>01 / SELECTED STORY</span><h2>ROHIT<br/><b>×</b> SUMAN</h2><p>A red thread through a quiet landscape.</p></div>
         <div className="feature-stage parallax">
-          <div className="feature-main"><img src={IMG.heroOne} alt="Wedding Riwaz couple beneath chandeliers"/></div>
-          <div className="feature-detail"><img src={IMG.heroTwo} alt="Wedding Riwaz evening portrait"/></div>
-          <div className="feature-side"><img src={IMG.mono} alt="Black and white wedding portrait"/></div>
+          <div className="feature-main"><img src={IMG.hero} alt="Rohit and Suman"/></div>
+          <div className="feature-side"><img src={IMG.mono} alt="Wedding portrait"/></div>
           <small>LOVE, RITUAL, MOTION<br/>WEDDING RIWAZ / ARCHIVE 01</small>
         </div>
       </section>
