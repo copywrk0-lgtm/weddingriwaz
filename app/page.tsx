@@ -66,6 +66,7 @@ function CameraIntro({ onDone }: { onDone: () => void }) {
 export default function Home() {
   const root = useRef<HTMLElement>(null);
   const [intro, setIntro] = useState(true);
+  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     try {
@@ -202,11 +203,29 @@ export default function Home() {
           <span>WEDDING RIWAZ / MOTION</span>
           <h2>SOME<br/>MEMORIES<br/><em>MOVE.</em></h2>
         </div>
-        <div className="film-frame">
-          <img src={IMG.wedding} alt="Wedding film still" />
-          <div className="film-overlay" />
-          <button className="play" aria-label="Play cinematic film"><span>▶</span></button>
-          <div className="film-meta">CINEMATOGRAPHY / WEDDING FILMS</div>
+        <div className={`film-frame ${playing ? 'is-playing' : ''}`}>
+          {!playing ? (
+            <>
+              <img src={IMG.wedding} alt="Wedding Riwaz film still" />
+              <div className="film-shade" />
+              <button className="film-play" aria-label="Play Wedding Riwaz film" onClick={() => setPlaying(true)}>
+                <span className="film-play-icon">▶</span>
+                <span className="film-play-label">PLAY FILM</span>
+              </button>
+              <small>CINEMATOGRAPHY / WEDDING FILMS</small>
+            </>
+          ) : (
+            <>
+              <iframe
+                className="film-iframe"
+                src="https://www.youtube-nocookie.com/embed/X-2XhLJnXLk?autoplay=1&rel=0&modestbranding=1"
+                title="Wedding Riwaz film"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+              <button className="film-close" aria-label="Close film" onClick={() => setPlaying(false)}>CLOSE ×</button>
+            </>
+          )}
         </div>
       </section>
 
