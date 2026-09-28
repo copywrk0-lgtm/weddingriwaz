@@ -9,7 +9,7 @@ type CameraIntroProps = {
 
 export default function CameraIntro({ onDone }: CameraIntroProps) {
   useEffect(() => {
-    const timer = window.setTimeout(onDone, 1420);
+    const timer = window.setTimeout(onDone, 2150);
     return () => window.clearTimeout(timer);
   }, [onDone]);
 
