@@ -39,7 +39,7 @@ const services = [
 
 function CameraIntro({ onDone }: { onDone: () => void }) {
   useEffect(() => {
-    const timer = window.setTimeout(onDone, 1600);
+    const timer = window.setTimeout(onDone, 1540);
     return () => window.clearTimeout(timer);
   }, [onDone]);
 
@@ -76,7 +76,7 @@ function CameraIntro({ onDone }: { onDone: () => void }) {
 
 export default function Home() {
   const root = useRef<HTMLElement>(null);
-  const [intro, setIntro] = useState(false);
+  const [intro, setIntro] = useState(true);
   const [playing, setPlaying] = useState(false);
   const [activeService, setActiveService] = useState<number | null>(null);
 
@@ -91,6 +91,23 @@ export default function Home() {
   };
 
   useEffect(() => {
+    if (intro) return;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        '.hero-word span',
+        { yPercent: 112, opacity: 0 },
+        { yPercent: 0, opacity: 1, duration: 0.9, stagger: 0.07, ease: 'power4.out', delay: 0.08 }
+      );
+      gsap.fromTo(
+        '.hero-foot',
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, duration: 0.62, ease: 'power2.out', delay: 0.28 }
+      );
+    }, root);
+    return () => ctx.revert();
+  }, [intro]);
+
+  useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const lenis = new Lenis({ duration: 1.05, smoothWheel: true });
     lenis.on('scroll', ScrollTrigger.update);
@@ -99,8 +116,6 @@ export default function Home() {
     gsap.ticker.lagSmoothing(0);
 
     const ctx = gsap.context(() => {
-      gsap.from('.hero-media', { scale: 1.08, filter: 'brightness(2.3) saturate(.55)', duration: 1.35, ease: 'power3.out', delay: intro ? 1.0 : .1 });
-      gsap.from('.hero-word span', { yPercent: 115, duration: 1.0, stagger: .08, ease: 'power4.out', delay: intro ? 1.08 : .16 });
       gsap.to('.hero-word-a', { xPercent: -11, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
       gsap.to('.hero-word-b', { xPercent: 12, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
       gsap.to('.hero-media img', { scale: 1.1, yPercent: 5, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
@@ -116,7 +131,7 @@ export default function Home() {
       gsap.ticker.remove(tick);
       lenis.destroy();
     };
-  }, [intro]);
+  }, []);
 
   return (
     <main ref={root}>
