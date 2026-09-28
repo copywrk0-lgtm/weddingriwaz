@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from '@studio-freight/lenis';
-import CameraIntro from '@/components/CameraIntro';
+import CameraIntro from '../components/CameraIntro';
 
 const IMG = {
   hero: 'https://weddingriwaz.com/wp-content/uploads/2024/06/3E1A0109-copy-scaled.jpg',
