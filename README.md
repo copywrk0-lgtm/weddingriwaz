@@ -1,19 +1,13 @@
-# Wedding Riwaz — Editorial Concept
+# Wedding Riwaz — Editorial Concept V3
 
-A cinematic homepage concept built from scratch for Wedding Riwaz.
+Cinematic editorial website concept for Wedding Riwaz.
 
-## Direction
-- Mobile-first editorial wedding portfolio
-- Camera focus → flash → exposure recovery intro (once per session)
-- Photography treated as interface, not decoration
-- Selected wedding story + irregular archive
-- Dark cinematic film section
-- Typographic service presentation (no cards)
-- Horizontal archive moment
-- Direct WhatsApp enquiry CTA
-
-## Stack
-Next.js / TypeScript / GSAP + ScrollTrigger / Lenis / CSS
+## What changed in V3
+- More dimensional CSS-built 3D camera intro (body, grip, prism, focus ring, lens glass and shutter button)
+- Full-screen camera flash reveal retained
+- Film section now plays a real Wedding Riwaz film from their official YouTube channel inside the page
+- “What We Make” uses GSAP Flip: hover on desktop or tap on mobile to expand each service photograph into an immersive full-row scene
+- Existing GSAP ScrollTrigger + Lenis choreography retained
 
 ## Run
 ```bash
@@ -21,5 +15,5 @@ npm install
 npm run dev
 ```
 
-## Notes
-The concept references publicly available Wedding Riwaz images from their existing website. For a production handoff, download and host approved assets locally and replace the remote URLs in `app/page.tsx`.
+## Production note
+The concept currently references Wedding Riwaz public portfolio images from their existing WordPress site. Replace those with client-supplied originals before a final production handoff.
