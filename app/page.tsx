@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from '@studio-freight/lenis';
+import CameraIntro from '@/components/CameraIntro';
 
 const IMG = {
   hero: 'https://weddingriwaz.com/wp-content/uploads/2024/06/3E1A0109-copy-scaled.jpg',
@@ -36,43 +37,6 @@ const services = [
   ['03', 'Pre-Weddings', 'Portraits made around the couple, not a preset.', IMG.blue],
   ['04', 'Destinations', 'Stories carried beyond the city.', IMG.prernaTwo]
 ] as const;
-
-function CameraIntro({ onDone }: { onDone: () => void }) {
-  useEffect(() => {
-    const timer = window.setTimeout(onDone, 1540);
-    return () => window.clearTimeout(timer);
-  }, [onDone]);
-
-  return (
-    <div className="camera-intro camera-intro-css">
-      <div className="camera-rig">
-        <div className="camera-shadow" />
-        <div className="camera-body-3d">
-          <div className="camera-top-plate" />
-          <div className="camera-prism"><span>WR</span></div>
-          <div className="camera-hotshoe" />
-          <div className="shutter-button" />
-          <div className="camera-af-light" />
-          <div className="camera-grip" />
-          <div className="camera-brand">WEDDING RIWAZ</div>
-          <div className="camera-lens-3d">
-            <div className="lens-barrel-ring lens-ring-outer" />
-            <div className="lens-barrel-ring focus-ring" />
-            <div className="lens-barrel-ring lens-ring-inner" />
-            <div className="lens-glass">
-              <span className="lens-reflection lens-reflection-a" />
-              <span className="lens-reflection lens-reflection-b" />
-              <span className="lens-aperture" />
-            </div>
-          </div>
-        </div>
-        <div className="focus-corners" aria-hidden="true"><i/><i/><i/><i/></div>
-        <span className="hold-still">HOLD STILL</span>
-      </div>
-      <div className="flash-layer"/>
-    </div>
-  );
-}
 
 export default function Home() {
   const root = useRef<HTMLElement>(null);
@@ -135,7 +99,7 @@ export default function Home() {
 
   return (
     <main ref={root}>
-      {intro && <CameraIntro onDone={finishIntro}/>}
+      {intro && <CameraIntro onDone={finishIntro} />}
 
       <header className="site-nav">
         <a className="monogram" href="#top">WR</a>
