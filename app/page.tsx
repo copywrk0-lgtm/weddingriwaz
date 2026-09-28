@@ -82,12 +82,67 @@ export default function Home() {
     const ctx = gsap.context(() => {
       gsap.to('.hero-word-a', { xPercent: -11, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
       gsap.to('.hero-word-b', { xPercent: 12, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-      gsap.to('.hero-media video', { scale: 1.08, yPercent: 4, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+      if (window.matchMedia('(min-width: 801px)').matches) {
+        gsap.to('.hero-media video', {
+          scale: 1.08,
+          yPercent: 4,
+          scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+        });
+      }
       gsap.utils.toArray<HTMLElement>('.reveal').forEach(el => gsap.from(el, { opacity: 0, y: 40, duration: .85, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 86%' } }));
       gsap.utils.toArray<HTMLElement>('.parallax img').forEach((img, i) => gsap.fromTo(img, { yPercent: i % 2 ? -4 : 4 }, { yPercent: i % 2 ? 5 : -5, ease: 'none', scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: true } }));
-      gsap.fromTo('.film-frame', { width: '62vw', height: '62vh' }, { width: '100vw', height: '100vh', ease: 'none', scrollTrigger: { trigger: '.film-section', start: 'top top', end: '+=1200', scrub: true, pin: true } });
-      gsap.to('.film-copy', { opacity: 0, y: -45, scrollTrigger: { trigger: '.film-section', start: 'top top', end: '+=450', scrub: true } });
+      const mm = gsap.matchMedia();
+
+      mm.add('(min-width: 801px)', () => {
+        gsap.fromTo(
+          '.film-frame',
+          { width: '62vw', height: '62vh' },
+          {
+            width: '100vw',
+            height: '100vh',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: '.film-section',
+              start: 'top top',
+              end: '+=1200',
+              scrub: true,
+              pin: true
+            }
+          }
+        );
+
+        gsap.to('.film-copy', {
+          opacity: 0,
+          y: -45,
+          scrollTrigger: {
+            trigger: '.film-section',
+            start: 'top top',
+            end: '+=450',
+            scrub: true
+          }
+        });
+      });
+
+      mm.add('(max-width: 800px)', () => {
+        gsap.fromTo(
+          '.film-frame',
+          { opacity: 0.55, y: 28 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: '.film-frame',
+              start: 'top 88%'
+            }
+          }
+        );
+      });
+
       gsap.to('.strip-track', { xPercent: -46, ease: 'none', scrollTrigger: { trigger: '.strip-section', start: 'top top', end: '+=1500', scrub: true, pin: true } });
+
+      return () => mm.revert();
     }, root);
 
     return () => {
