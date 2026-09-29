@@ -21,7 +21,8 @@ const IMG = {
   library: 'https://weddingriwaz.com/wp-content/uploads/2024/05/A08I28711-scaled.webp',
   mono: 'https://weddingriwaz.com/wp-content/uploads/2024/05/A37I8062-copy-scaled.webp',
   pink: 'https://weddingriwaz.com/wp-content/uploads/2024/05/A37I8440-copy-scaled.webp',
-  wedding: 'https://weddingriwaz.com/wp-content/uploads/2024/06/A37I8438-copy-scaled-1.jpg'
+  wedding: 'https://weddingriwaz.com/wp-content/uploads/2024/06/A37I8438-copy-scaled-1.jpg',
+  filmStill: '/wr-film-couple.webp'
 } as const;
 
 const stories = [
@@ -222,7 +223,7 @@ export default function Home() {
         <div className={`film-frame ${playing ? 'is-playing' : ''}`}>
           {!playing ? (
             <>
-              <img src={IMG.wedding} alt="Wedding Riwaz film still"/>
+              <img src={IMG.filmStill} alt="Wedding Riwaz couple portrait"/>
               <div className="film-shade"/>
               <button className="film-play" aria-label="Play Wedding Riwaz film" onClick={() => setPlaying(true)}>
                 <span className="film-play-icon">▶</span><span className="film-play-label">PLAY FILM</span>

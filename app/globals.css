@@ -59,7 +59,7 @@
 .film-copy>span{font-size:8px}
 .film-copy h2{font-size:14vw;line-height:.78;margin:30px 0 0}
 .film-frame{position:relative!important;inset:auto!important;width:100vw!important;height:62svh!important;min-height:430px;margin:0;overflow:hidden}
-.film-frame img{object-position:center}
+.film-frame img{object-position:58% center}
 .film-play{width:78px;height:78px}
 .film-play-icon{font-size:14px}
 .film-play-label{display:none}
